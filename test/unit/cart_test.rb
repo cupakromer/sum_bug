@@ -12,7 +12,7 @@ class CartTest < ActiveSupport::TestCase # test "the truth" do
       line_item.product = @product
     end
 
-    assert_equal BigDecimal.new('4.50').to_s, cart.total.to_s
+    assert_equal '4.50', cart.total.to_s
   end
 
   test "new cart should allow summing from cart.line_items" do
@@ -22,15 +22,15 @@ class CartTest < ActiveSupport::TestCase # test "the truth" do
       line_item.product = @product
     end
 
-    assert_equal BigDecimal.new('4.50').to_s, cart.line_items.sum(&:price).to_s
+    assert_equal '4.50', cart.line_items.sum(&:price).to_s
   end
 
   test "existing cart's total should sum line items" do
     cart = Cart.create!
     cart.line_items << LineItem.create!(amount: 3, product: @product)
 
-    assert_equal BigDecimal.new('6.75').to_s, cart.line_items.sum(&:price).to_s
-    assert_equal BigDecimal.new('6.75').to_s, cart.total.to_s
+    assert_equal '6.75', cart.line_items.sum(&:price).to_s
+    assert_equal '6.75', cart.total.to_s
   end
 
   test "existing cart should include new line item in total" do
@@ -41,7 +41,7 @@ class CartTest < ActiveSupport::TestCase # test "the truth" do
       line_item.product = @product
     end
 
-    assert_equal BigDecimal.new('11.25').to_s, cart.line_items.sum(&:price).to_s
-    assert_equal BigDecimal.new('11.25').to_s, cart.total.to_s
+    assert_equal '11.25', cart.line_items.sum(&:price).to_s
+    assert_equal '11.25', cart.total.to_s
   end
 end
